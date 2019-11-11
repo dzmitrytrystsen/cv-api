@@ -3,7 +3,7 @@ class Api::V1::ResumesController < ApplicationController
 
   # GET /resumes
   def index
-    render json: Resume.all
+    render json: Resume.where(user_id: current_user.id)
   end
 
   # GET /resumes/1
@@ -13,7 +13,7 @@ class Api::V1::ResumesController < ApplicationController
 
   # POST /resumes
   def create
-    @resume = Resume.new(resume_params)
+    @resume = Resume.new(resume_params.merge(user_id: current_user.id))
 
     if @resume.save
       render json: @resume, status: :created, location: api_v1_resume_url(@resume)
