@@ -5,6 +5,6 @@ Rails.application.routes.draw do
     end
   end
 
-  post 'authenticate', to: 'authentication#authenticate'
-  post 'user/create', to: 'user#create'
+  post 'auth/login', to: 'users#login'
+  post 'users/create', to: 'users#create'
 end
